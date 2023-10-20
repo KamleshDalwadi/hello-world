@@ -20,10 +20,10 @@ jobs:
         LABELS_TO_MEASURE: 'waiting-for-manager-approval,waiting-for-security-review'
         SEARCH_QUERY: 'repo:KamleshDalwadi/hello-world is:pr closed:2022-05-01..2023-09-30 -reason:"not planned"'
 
-    # - name: Create issue
-    #   uses: peter-evans/create-issue-from-file@v4
-    #   with:
-    #     title: Monthly issue metrics report
-    #     token: ${{ secrets.GITHUB_TOKEN }}
-    #     content-filepath: ./issue_metrics.md
-    #     assignees: <YOUR_GITHUB_HANDLE_HERE>
+    - name: Create issue
+      uses: peter-evans/create-issue-from-file@v4
+      with:
+        title: Time taken metrics report
+        token: ${{ secrets.GITHUB_TOKEN }}
+        content-filepath: ./issue_metrics.md
+        assignees: <YOUR_GITHUB_HANDLE_HERE>
