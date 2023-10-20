@@ -15,8 +15,9 @@ jobs:
         - name: Check for new commits today
           id: check-new-commits
           uses: adriangl/check-new-commits-action@v1
+          env:
+            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           with:
-            token: ${{ secrets.GITHUB_TOKEN }}
             seconds: 86400 # One day in seconds
             branch: 'master'
             
