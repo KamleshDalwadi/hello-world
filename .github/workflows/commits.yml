@@ -1,4 +1,4 @@
-name: Time metrics
+name: Commits metrics
 on:
   workflow_dispatch:
 
@@ -8,7 +8,7 @@ permissions:
 
 jobs:
   build:
-    name: Time Taken metrics
+    name: Lsdy one day commit metrics
     runs-on: ubuntu-latest
 
     steps:
