@@ -19,7 +19,7 @@ jobs:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         LABELS_TO_MEASURE: 'waiting-for-manager-approval,waiting-for-security-review'
         # SEARCH_QUERY: 'repo:KamleshDalwadi/hello-world is:pr closed:2022-05-01..2023-09-30'
-        SEARCH_QUERY: 'repo:KamleshDalwadi/hello-world is:pr is:closed'
+        SEARCH_QUERY: 'repo:KamleshDalwadi/hello-world is:issue is:open'
 
     - name: Create issue
       uses: peter-evans/create-issue-from-file@v4
