@@ -1,0 +1,30 @@
+name: PR metrics
+on:
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  pull-requests: read
+
+jobs:
+  build:
+    name: Open/Closed PRs metrics
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Run issue-metrics tool
+      uses: github/issue-metrics@v2
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        LABELS_TO_MEASURE: 'waiting-for-manager-approval,waiting-for-security-review'
+        # SEARCH_QUERY: 'repo:KamleshDalwadi/hello-world is:pr closed:2022-05-01..2023-09-30'
+        SEARCH_QUERY: 'repo:KamleshDalwadi/hello-world is:issue is:open'
+
+    - name: Create issue
+      uses: peter-evans/create-issue-from-file@v4
+      with:
+        title: Time taken metrics report
+        token: ${{ secrets.GITHUB_TOKEN }}
+        content-filepath: ./issue_metrics.md
+        assignees: <YOUR_GITHUB_HANDLE_HERE>
