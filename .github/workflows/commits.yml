@@ -28,3 +28,20 @@ jobs:
         - name: Print another thing if new commits couldn't be found
           if: ${{ steps.check-new-commits.outputs.has-new-commits != 'true' }}
           run: echo "You don't have new commits 🛑!"
+
+        - name: Run commit-metrics tool
+          uses: github/issue-metrics@v2
+          env:
+            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            LABELS_TO_MEASURE: 'waiting-for-manager-approval,waiting-for-security-review'
+            # SEARCH_QUERY: 'repo:KamleshDalwadi/hello-world is:pr closed:2022-05-01..2023-09-30'
+            SEARCH_QUERY: 'repo:KamleshDalwadi/hello-world is:commit'
+    
+        - name: Create issue
+          uses: peter-evans/create-issue-from-file@v4
+          with:
+            title: Time taken commit metrics report
+            token: ${{ secrets.GITHUB_TOKEN }}
+            content-filepath: ./commit_metrics.md
+            assignees: <YOUR_GITHUB_HANDLE_HERE>
+    
